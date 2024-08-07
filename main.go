@@ -45,7 +45,7 @@ func setupTUN() (file *os.File, cleanup func()) {
 		log.Panic(err)
 	}
 
-	err = unix.IoctlSetInt(nfd, unix.TUNSETOFFLOAD, unix.TUN_F_CSUM|unix.TUN_F_USO4|unix.TUN_F_USO6)
+	err = unix.IoctlSetInt(nfd, unix.TUNSETOFFLOAD, unix.TUN_F_CSUM|unix.TUN_F_USO4|unix.TUN_F_USO6|unix.TUN_F_TSO4|unix.TUN_F_TSO6)
 	if err != nil {
 		unix.Close(nfd)
 		log.Panic(err)
